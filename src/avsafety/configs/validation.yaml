@@ -1,0 +1,15 @@
+# Data quality thresholds. Changing any value changes the validation config hash
+# recorded on each run.
+expected_dt_s: 0.1
+dt_tolerance_s: 0.01
+max_speed_mps: 70.0          # ~157 mph; anything faster is a tracking artifact
+max_speed_mismatch_mps: 5.0  # reported vs position-derived speed
+speed_mismatch_min_steps: 3
+dimensions:
+  min_m: 0.1
+  max_length_m: 25.0
+  max_width_m: 6.0
+sdc_valid_frac:
+  warn_below: 0.9
+  error_below: 0.5
+sdc_stationary_distance_m: 1.0

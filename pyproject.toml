@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "avsafety"
-version = "0.1.0"
+version = "0.2.0"
 description = "Safety event detection, triage, and reporting on the Waymo Open Motion Dataset"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -13,6 +13,10 @@ dependencies = [
     "pyarrow>=14",
     "protobuf>=6.33.5,<7",  # must be >= the version that generated src/avsafety/protos
     "google-crc32c>=1.5",
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "pyyaml>=6",
+    "streamlit>=1.50",
 ]
 
 [project.optional-dependencies]
@@ -28,11 +32,14 @@ avsafety = "avsafety.cli:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+avsafety = ["configs/*.yaml", "sql/*.sql", "sql/analytics/*.sql"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
 [tool.ruff]
-line-length = 110
+line-length = 120
 extend-exclude = ["src/avsafety/protos"]
 
 [tool.ruff.lint]

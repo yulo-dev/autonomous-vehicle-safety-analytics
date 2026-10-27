@@ -1,4 +1,4 @@
-.PHONY: setup protos download synth ingest inventory test lint
+.PHONY: setup protos download synth ingest validate detect report app demo test lint
 
 setup:
 	python3 -m venv .venv && .venv/bin/pip install -U pip && .venv/bin/pip install -e ".[dev]"
@@ -16,8 +16,20 @@ synth:
 ingest:
 	avsafety ingest
 
-inventory:
-	avsafety inventory
+validate:
+	avsafety validate
+
+detect:
+	avsafety detect
+
+report:
+	avsafety report
+
+app:
+	avsafety app
+
+# Full pipeline on synthetic data, then open the dashboard.
+demo: synth ingest validate detect report app
 
 test:
 	pytest -q
